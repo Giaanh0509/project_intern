@@ -1,0 +1,168 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: rgb(245, 245, 245);
+}
+
+header {
+	border-bottom: 1px solid #ccc;
+	background-color: rgb(255, 255, 255);
+}
+
+.contact-info {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	font-size: 14px;
+	color: #444;
+}
+
+.contact-info .right {
+	color: #888;
+}
+
+.logo-search-cart {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+}
+
+.logo h1 {
+	margin: 0;
+	color: #ff6a00;
+	font-size: 28px;
+}
+
+.search-bar {
+	flex-grow: 2;
+	display: flex;
+	align-items: center;
+}
+
+.search-bar select, .search-bar input, .search-bar button {
+	padding: 8px;
+	margin-right: 5px;
+	font-size: 14px;
+}
+
+.search-bar input {
+	flex-grow: 1;
+}
+
+.cart {
+	display: flex;
+	align-items: center;
+	color: #333;
+}
+
+.cart span {
+	margin-left: 10px;
+}
+
+nav {
+	background-color: #ff6a00;
+	color: white;
+}
+
+nav ul {
+	display: flex;
+	justify-content: center;
+	list-style-type: none;
+	margin: 0;
+	padding: 10px 0;
+}
+
+nav ul li {
+	margin: 0 15px;
+	cursor: pointer;
+}
+
+.container {
+	display: flex;
+}
+
+.content {
+	flex-grow: 1;
+	padding: 20px;
+	background-color: rgb(255, 255, 255);
+	max-width: 850px; /* Đặt độ rộng tối đa cho content */
+	margin: 20px auto; /* Căn giữa content theo chiều ngang */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	/* Thêm bóng đổ để tạo hiệu ứng nổi */
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 15px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+input[type="number"] {
+	width: 50px; /* Đặt độ rộng của ô */
+	padding: 5px; /* Điều chỉnh khoảng cách bên trong */
+	font-size: 14px; /* Điều chỉnh kích thước chữ */
+	text-align: center; /* Căn giữa văn bản bên trong ô */
+	border: 1px solid #ccc; /* Đặt viền cho ô */
+	border-radius: 4px; /* Bo tròn các góc */
+}
+.update-btn,
+.remove-btn {
+	background-color: #dc3545;
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	cursor: pointer;
+	font-size: 14px;
+	border-radius: 5px;
+}
+.update-btn:hover{
+	background-color: #c82333;
+}
+.remove-btn:hover {
+	background-color: #c82333;
+}
+
+.btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.checkout-btn {
+	background-color: #28a745;
+	color: white;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+.checkout-btn:hover {
+	background-color: #218838;
+}
+.continue-shopping {
+	text-decoration: none;
+	color: #007bff;
+	font-size: 16px;
+}
+
+.continue-shopping:hover {
+	text-decoration: underline;
+}
+
+.subtotal, .estimated-shipping, .total-row {
+	text-align: right; /* Align these rows to the right */
+	font-weight: bold; /* Make them bold for emphasis */
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" href="/css/admin/books.css" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+        <h3 class="mb-3 ml-3 d-flex justify-content-between">
+            <div>
+                <a class="text-black" th:href="@{/admin/orders}">Orders</a>
+                ->
+                <a class="text-black" href="#">Orders details</a>
+            </div>
+            <div>
+                <a th:if="${checkBookStatusInOrder}"
+                   th:href="@{'/admin/orders/' + ${orderId} + '/confirmation'}"
+                   class="btn btn-success text-white">
+                    Accept
+                </a>
+                <a th:href="@{'/admin/orders/' + ${orderId} + '/reject'}"
+                   class="btn btn-danger text-white">
+                    Reject
+                </a>
+            </div>
+        </h3>
+
+        <h4 class="ml-3">Customer information</h4>
+        <table class="table">
+            <ul>
+                <li th:text="${user.username}"></li>
+                <li th:text="${user.email}"></li>
+                <li th:text="${user.address}"></li>
+                <li th:text="${user.phoneNumber}"></li>
+            </ul>
+        </table>
+
+
+        <div class="table-responsive bg-light">
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th></th>
+                    <th>Order quantity</th>
+                    <th>Stock quantity</th>
+                    <th>Note</th>
+                    <th></th>
+                </tr>
+                <tr th:each="booksOrder: ${booksOrders.getContent()}">
+                    <th>
+                        <div class="mt-7" th:text="${booksOrder.book.title}"></div>
+                    </th>
+
+                    <th>
+                        <div class="mt-7" th:text="${booksOrder.book.price}"></div>
+                    </th>
+
+                    <th>
+                        <div class="book-image">
+                            <img th:src="'data:image/jpeg;base64,' + ${booksOrder.book.image}" alt="Book Image" />
+                        </div>
+                    </th>
+
+                    <th>
+                        <div class="mt-7 ml-5" th:text="${booksOrder.orderQuantity}"></div>
+                    </th>
+
+                    <th>
+                        <div class="mt-7 ml-5" th:text="${booksOrder.book.stockQuantity}"></div>
+                    </th>
+
+                    <th>
+                        <div class="mt-7" th:text="${booksOrder.status}"></div>
+                    </th>
+
+                    <th>
+                        <a th:href="@{'/admin/orders/' + ${orderId} + '/book/' + ${booksOrder.book.id}}"
+                           th:if="${booksOrder.status == 'Not Enough'}"
+                           class="mt-7 ml-5 btn btn-warning"
+                        >Remove</a>
+                    </th>
+
+                </tr>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end mr-5">
+            <div class="d-inline-flex" th:each="pageNum : ${pageNumbers}">
+                <p><</p>
+                <a th:href="@{'/admin/orders/' + ${orderId} + '?page=' + ${pageNum} + '&size=' + ${booksOrders.size}}"
+                   th:text="${pageNum}"></a>
+                <p>></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

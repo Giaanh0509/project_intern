@@ -1,0 +1,275 @@
+.container {
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.content-header {
+	color: #ff5722;
+	margin-bottom: 30px;
+	margin-top: 10px	
+}
+
+.order {
+    background-color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.order-header{
+    background-color: #f5f5f5;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.order-footer .total {
+	text-align: right;
+	color: #ff5722;
+	font-weight: 600;
+}
+
+.order-status {
+	color: #ff5722;
+	font-weight: bold;
+}
+
+.order-body {
+    padding: 10px;
+}
+
+.order-item {
+	display: flex;
+    align-items: center;
+}
+
+.order-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.item-info {
+	display: flex;
+	justify-content: space-between;
+    width: 100%
+}
+
+.item-info h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.item-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.btn, .back-home-btn {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover, .back-home-btn:hover {
+    background-color: #e64a19;
+}
+
+.back-home-btn {
+	text-decoration: none;
+}
+
+.back-home-btn-container {
+	display: block;
+	text-align: center;
+	margin: 50px
+}
+
+.no-orders-message {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout {
+	display: flex;
+	gap: 20px;
+}
+
+.checkout-info {
+	flex: 7;
+}
+
+.address-container {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 20px
+}
+
+.address-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #ff5722;
+}
+
+.address-header > div {
+	display: flex;
+    font-weight: bold;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.address-info {
+	margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.name {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.phone {
+    margin-right: 20px;
+}
+
+.address {
+   margin-top: 10px;
+}
+
+.default-tag {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid #e47554;
+    color: #e47554;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 2px;
+}
+
+.change-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.change-link:hover {
+    text-decoration: underline;
+}
+
+
+.payment-methods {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.payment-methods .label {
+    margin-right: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.payment-methods .methods {
+    display: flex;
+    gap: 10px;
+}
+
+.method {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.method:hover {
+    border-color: #ff4500;
+}
+
+.method.active {
+    border-color: #ff4500;
+    background-color: #fff5f5;
+    color: #ff4500;
+    position: relative;
+}
+
+.method.disabled {
+    color: #aaa;
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+}
+
+
+.order-summary {
+	flex: 3;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 16px;
+}
+
+.total-value {
+    color: #E47554;
+}
+
+.order-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.order-button:hover {
+    background-color: #e64a19;
+}
+
+
+

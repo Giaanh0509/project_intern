@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm" action="#" th:action="@{/admin/users/search}" th:method="get">
+                    <div class="card-body row no-gutters align-items-center">
+                        <!--end of col-->
+                        <div class="col">
+                            <input type="text" name="username" th:value="${username}" class="form-control form-control-lg form-control-borderless" placeholder="Search username ...">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto ml-3">
+                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+            </div>
+            <!--end of col-->
+        </div>
+
+        <div class="table-responsive bg-light">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>PhoneNumber</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Handle</th>
+                </tr>
+
+                <tr th:each="user: ${users}">
+                    <th th:text="${user.id}"></th>
+                    <th th:text="${user.username}"></th>
+                    <th th:text="${user.phoneNumber}"></th>
+                    <th th:text="${user.address}"></th>
+                    <th th:text="${user.email}"></th>
+                    <th th:text="${user.role.name}"></th>
+                    <th>
+                        <a th:href="@{'/admin/users/' + ${user.id} + '/edit'}"
+                           class="btn btn-info">
+                            Edit
+                        </a>
+
+                        <a th:href="@{'/admin/users/' + ${user.id}}"
+                           class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this item?');">
+                            Delete
+                        </a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

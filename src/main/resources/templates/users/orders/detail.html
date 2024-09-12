@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Xem chi tiet don hang</title>
+<link rel="stylesheet" href="/css/users/orders/detail.css" />
+</head>
+
+<body>
+	<main layout:fragment="content" class="content">
+
+		<h1>Chi tiết đơn hàng của bạn</h1>
+
+		<div class="order-header">
+			<p>
+				Ngày đặt: <span
+					th:text="${#dates.format(order.orderDate, 'dd/MM/yyyy')}"></span>
+			</p>
+			<p>
+				Trạng thái: <span th:text="${order.status}"></span>
+			</p>
+			<p>
+				Phương thức thanh toán: <span th:text="${order.paymentMethod}"></span>
+			</p>
+			<p>
+				Tổng tiền: <span
+					th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'POINT', 3, 'COMMA')}"></span>đ
+			</p>
+		</div>
+
+		<div class="order-details">
+			<h2>Chi tiết sản phẩm</h2>
+			<div th:each="detail : ${order.orderDetails}">
+				<div class="order-item">
+					<img th:src="'data:image/jpeg;base64,' + ${detail.book.image}"
+						alt="Book Image" />
+					<div class="item-info">
+						<h3 th:text="${detail.book.title}"></h3>
+						<p>
+							Số lượng: <span th:text="${detail.quantity}"></span>
+						</p>
+						<p>
+							Đơn giá: <span
+								th:text="${#numbers.formatDecimal(detail.price, 0, 'POINT', 3, 'COMMA')}"></span>đ
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<a href="/user/orders" class="back">Quay lại</a>
+
+	</main>
+</body>
+</html>

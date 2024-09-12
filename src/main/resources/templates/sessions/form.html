@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/css/register/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/js/register/bootstrap.min.js"></script>
+    <script src="/js/register/jquery-1.11.1.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="/css/register/registerform.css">
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+    <title>Admin</title>
+</head>
+<body>
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">SIGN UP</h1>
+                <hr/>
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" action="#" th:action="@{/sessions/}" th:object="${registerUser}"
+                  method="post">
+
+                <div th:if="${my_error}" class="alert alert-danger">
+                    <span th:text="${my_error}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Username</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" th:field="*{username}" class="form-control" name="username" id="username"
+                                   placeholder="Enter your Username(*)"/>
+
+                            <div th:if="${#fields.hasErrors('username')}">
+                                <ul>
+                                    <li th:each="e: ${#fields.errors('username')}" th:text="${e}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" th:field="*{password}" class="form-control" name="password"
+                                   id="password"
+                                   placeholder="Enter your Password(*)"/>
+                            <div th:if="${#fields.hasErrors('password')}">
+                                <ul>
+                                    <li th:each="e: ${#fields.errors('password')}" th:text="${e}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" th:field="*{email}" class="form-control" name="email" id="email"
+                                   placeholder="Enter your Email(*)"/>
+                            <div th:if="${#fields.hasErrors('email')}">
+                                <ul>
+                                    <li th:each="e: ${#fields.errors('email')}" th:text="${e}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber" class="cols-sm-2 control-label">Your PhoneNumber</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                            <input type="text" th:field="*{phoneNumber}" class="form-control" name="name"
+                                   id="phoneNumber"
+                                   placeholder="Enter your PhoneNumber(*)"/>
+                            <div th:if="${#fields.hasErrors('phoneNumber')}">
+                                <ul>
+                                    <li th:each="e: ${#fields.errors('phoneNumber')}" th:text="${e}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address" class="cols-sm-2 control-label">Your Address</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            <input type="text" th:field="*{address}" class="form-control" name="name" id="address"
+                                   placeholder="Enter your Address(*)"/>
+                            <div th:if="${#fields.hasErrors('address')}">
+                                <ul>
+                                    <li th:each="e: ${#fields.errors('address')}" th:text="${e}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn back-color btn-lg btn-block login-button">Register</button>
+                </div>
+
+                <div class="text-center">
+                    <p>You already have an account? <a th:href="@{/sessions/login}" class="text">Login</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+</body>
+</html>

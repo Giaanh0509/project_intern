@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sách tiếng Nhật JBooks</title>
+<link rel="stylesheet" th:href="@{/css/cart.css}">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+</head>
+<body>
+<body>
+	<main layout:fragment="content" class="content">
+		<div class="container">
+			<div class="content">
+				<table>
+					<thead>
+						<tr>
+							<th>Sản phẩm</th>
+							<th></th>
+							<th>Đơn giá</th>
+							<th>Số lượng</th>
+							<th>Tổng cộng</th>
+							<th></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cartDetail : ${cartDetails}">
+							<form th:action="@{|/carts/${cartDetail.id}|}" th:method="patch">
+								<td><img
+									th:src="'data:image/jpeg;base64,' + ${cartDetail.book.image}"
+									alt="Book Image" width="90" height="110" /></td>
+								<td><a th:text="${cartDetail.book.title}"
+									class="product-name"></a></td>
+								<td
+									th:text="${#numbers.formatDecimal(cartDetail.book.price, 1, 0) + '₫'}"></td>
+								<td><input type="number" name="quantity"
+									th:value="${cartDetail.quantity}" min="1"></td>
+								<td
+									th:text="${#numbers.formatDecimal(cartDetail.book.price * cartDetail.quantity, 1, 0)} + '₫'"></td>
+								<td class="update"><input type="hidden" name="cartDetailId"
+									th:value="${cartDetail.id}" />
+									<button type="submit" class="update-btn">
+										<i class="fa fa-refresh"></i>
+									</button></td>
+							</form>
+							<!-- Form xóa sản phẩm -->
+							<form th:action="@{|/carts/${cartDetail.id}|}" th:method="delete">
+								<input type="hidden" name="userId" th:value="${userId}" /> <input
+									type="hidden" name="cartDetailId" th:value="${cartDetail.id}" />
+								<td>
+									<button type="submit" class="remove-btn">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</td>
+							</form>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td colspan="3" class="subtotal">Tạm tính</td>
+							<td th:text="${subtotal} + '₫'"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td colspan="3" class="estimated-shipping">Phí vận chuyển</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td colspan="3" class="total-row">Tổng cộng</td>
+							<td th:text="${subtotal} + '₫'"></td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<div class="btn">
+					<a th:href="@{/home}" class="continue-shopping"> ← Tiếp Tục Mua
+						Hàng</a> <a th:href="@{/user/orders/new}" class="checkout-btn">Thanh toán ngay</a>
+				</div>
+
+			</div>
+		</div>
+	</main>
+</body>
+</html>

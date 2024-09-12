@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title th:text="${book.title} + ' - JBooks'">Book Detail -
+	JBooks</title>
+<link rel="stylesheet" href="/css/users/books/show.css" />
+<script src="/js/users/books/show.js"></script>
+</head>
+
+<body>
+	<main layout:fragment="content" class="content">
+		<div class="book-detail">
+			<h1 th:text="${book.title}">Book Title</h1>
+			<div class="book-rating">
+				<span style="font-weight: bold;"
+					th:text="${'Đánh giá từ khách hàng: ' + book.rating + '/5'}">0
+					đánh giá từ khách hàng</span>
+			</div>
+
+			<div class="book-content">
+				<div class="book-image">
+					<img th:src="'data:image/jpeg;base64,' + ${book.image}"
+						alt="Book Image" />
+				</div>
+				<div class="book-info">
+					<div class="book-price">
+						<span class="current-price" th:text="${book.price + 'đ'}">69.000đ</span>
+					</div>
+					<div class="book-category">
+						<strong>Danh mục:</strong> <span
+							th:each="category, stat : ${categories}"> <span
+							th:text="${category.category.name}">Category Name</span> <span
+							th:if="${!stat.last}">, </span>
+						</span>
+					</div>
+
+					<div class="purchase-options">
+						<div sec:authorize="isAuthenticated()">
+							<form action="/cart/add" method="post" id="add-to-cart-form">
+								<input type="hidden" name="bookId" th:value="${book.id}" />
+								<input type="number" name="quantity" value="1" min="1" />
+								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								<button type="submit" class="add-to-cart"
+										th:disabled="${book.stockQuantity == 0}">+ Giỏ Hàng</button>
+							</form>
+							<p th:if="${book.stockQuantity == 0}" style="color: #ff6a00;">Sản phẩm tạm hết hàng</p>
+						</div>
+
+
+						<div sec:authorize="isAnonymous()">
+							<button class="add-to-cart" disabled>+ Giỏ Hàng</button>
+							<p class="disabled-text">Đăng nhập để thêm vào giỏ hàng</p>
+						</div>
+					</div>
+
+					<div class="noti" id="notification" style="display: none;">
+						Sản phẩm đã được thêm vào giỏ hàng!</div>
+				</div>
+			</div>
+
+			<div class="reviews-display-section">
+				<h2>Đánh giá</h2>
+
+				<div th:if="${#lists.isEmpty(reviews)}">
+					<p>Tạm thời chưa có đánh giá.</p>
+				</div>
+
+				<div th:each="review : ${reviews}" class="review">
+					<div class="avatar">
+						<img src="/images/avatar.png" alt="User Avatar"/>
+					</div>
+					<div class="review-content">
+						<span class="username" th:text="${review.user.username}">Demo username</span>
+						<div class="rating">
+							<span th:each="i : ${#numbers.sequence(1, review.rating)}">★</span>
+							<span th:if="${review.rating < 5}" th:each="i : ${#numbers.sequence(review.rating + 1, 5)}" style="color: #ddd; left: 0">★</span>
+						</div>
+						<p th:text="${review.content}">Review Content</p>
+
+						<div sec:authorize="isAuthenticated()">
+							<div th:if="${review.user.username == loggedInUsername}">
+								<button class="delete-btn" th:attr="onclick=${'showDeleteConfirmation(' + review.id + ')'}">Xóa</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="deleteConfirmationModal" style="display: none;">
+					<p>Bạn có muốn xóa bình luận của mình?</p>
+					<button onclick="deleteReview()">Có</button>
+					<button onclick="hideDeleteConfirmation()">Không</button>
+				</div>
+
+				<div class="pagination" th:if="${totalPages > 0}">
+					<ul>
+						<li th:if="${currentPage > 0}">
+							<a th:href="@{/books/{id}(id=${book.id}, page=${currentPage - 1}, size=4)}">&laquo; Previous</a>
+						</li>
+						<li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
+							th:class="${pageNum == currentPage} ? 'active'">
+							<a th:href="@{/books/{id}(id=${book.id}, page=${pageNum}, size=4)}" th:text="${pageNum + 1}">1</a>
+						</li>
+						<li th:if="${currentPage < totalPages - 1}">
+							<a th:href="@{/books/{id}(id=${book.id}, page=${currentPage + 1}, size=4)}">Next &raquo;</a>
+						</li>
+					</ul>
+				</div>
+
+
+			</div>
+
+			<div class="review-section">
+				<h2>Thêm Đánh Giá</h2>
+
+				<div sec:authorize="isAnonymous()">
+					<p>Đăng nhập để thêm đánh giá</p>
+				</div>
+
+				<form sec:authorize="isAuthenticated()"
+					th:action="@{/books/{id}/reviews(id=${book.id})}" method="post"
+					id="review-form">
+					<label for="rating">Đánh giá của bạn *</label>
+					<div class="rating" id="star-rating">
+						<span class="star" data-value="1">★</span> <span class="star"
+							data-value="2">★</span> <span class="star" data-value="3">★</span>
+						<span class="star" data-value="4">★</span> <span class="star"
+							data-value="5">★</span>
+					</div>
+					<input type="hidden" id="rating" name="rating" value="0"> <label
+						for="comment">Nhận xét của bạn *</label>
+					<textarea id="comment" name="content" required></textarea>
+					<button type="submit" class="submit-button">Gửi Đi</button>
+				</form>
+			</div>
+		</div>
+	</main>
+
+</body>
+</html>

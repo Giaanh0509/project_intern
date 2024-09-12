@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+<!--    <link rel="stylesheet" href="/css/admin/books.css" />-->
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+        <h3 class="mb-3 ml-3">Danh sách đơn hàng</h3>
+
+        <div class="table-responsive bg-light">
+            <table class="table">
+                <tr>
+                    <th>Order Date</th>
+                    <th>Payment Method</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                <tr th:each="order: ${orders.getContent()}" >
+                    <th th:text="${order.orderDate}"></th>
+                    <th th:text="${order.paymentMethod}"></th>
+                    <th th:text="${order.totalPrice}"></th>
+                    <th th:text="${order.status}"></th>
+                    <th>
+                        <a th:href="@{'/admin/orders/' + ${order.id}}"
+                           class="btn btn-primary text-white">
+                            Details
+                        </a>
+
+                        <a class="btn btn-dark text-white">
+                            Handle
+                        </a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end mr-5">
+        <div class="d-inline-flex" th:each="pageNum : ${pageNumbers}">
+            <p><</p>
+            <a th:href="@{/admin/orders(page=${pageNum}, size=${orders.size})}"
+                       th:text="${pageNum}"></a>
+            <p>></p>
+        </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

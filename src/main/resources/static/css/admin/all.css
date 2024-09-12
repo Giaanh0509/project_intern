@@ -1,0 +1,19 @@
+body{
+    background:#eee;
+    margin-top:20px;
+}
+
+.card-header {
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+}
+
+.content{
+   margin-left: 0px;
+}
+
+.progress-bar-0 { background-color: #007bff; } /* Blue */
+.progress-bar-1 { background-color: #28a745; } /* Green */
+.progress-bar-2 { background-color: #dc3545; } /* Red */
+.progress-bar-3 { background-color: #ffc107; } /* Yellow */
+.progress-bar-4 { background-color: #17a2b8; } /* Cyan */

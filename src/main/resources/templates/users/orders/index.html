@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sách tiếng Nhật JBooks</title>
+    <link rel="stylesheet" href="/css/users/orders/index.css" />
+</head>
+
+<body>
+    <main layout:fragment="content" class="content">
+		<div class="tabs">
+		    <a th:classappend="${selectedStatus == 'ALL'} ? 'active'" th:href="@{/user/orders?status=ALL}">Tất cả</a>
+		    <a th:classappend="${selectedStatus == 'PENDING'} ? 'active'" th:href="@{/user/orders?status=PENDING}">Chờ xác nhận</a>
+		    <a th:classappend="${selectedStatus == 'COMPLETED'} ? 'active'" th:href="@{/user/orders?status=COMPLETED}">Hoàn thành</a>
+		    <a th:classappend="${selectedStatus == 'CANCELLED'} ? 'active'" th:href="@{/user/orders?status=CANCELLED}">Đã huỷ</a>
+		</div>
+
+         
+         <!-- Message if no orders are available -->
+            <div th:if="${errorMessage}" class="no-orders-message text-center">
+                <h3 th:text="${errorMessage}"></h3>
+            </div>
+
+		<div class="order" th:each="order : ${orders}">
+		    <div class="order-header">
+		        <span>Ngày đặt: <span th:text="${#dates.format(order.orderDate, 'dd/MM/yyyy')}"></span></span>
+		        <span>Trạng thái: <span th:text="${order.status}"></span></span>
+		    </div>
+		    <div class="order-body" th:each="detail : ${order.orderDetails}">
+		        <div class="order-item">
+		            <img th:src="'data:image/jpeg;base64,' + ${detail.book.image}" alt="Book Image" />
+		            <div class="item-info">
+		                <h3 th:text="${detail.book.title}"></h3>
+		                <p>Số lượng: <span th:text="${detail.quantity}"></span></p>
+		                <p>Đơn giá: <span th:text="${#numbers.formatDecimal(detail.price, 0, 'POINT', 3, 'COMMA')}"></span>đ</p>
+		            </div>
+		        </div>  
+		    </div>
+		    <div class="order-footer">
+		        <div>
+		            <a th:href="@{/user/{orderId}(orderId=${order.id})}" class="btn">Chi tiết đơn hàng</a>
+		            <button class="btn">Đánh giá</button>
+		        </div>
+		        <div class="total">
+		            <span>Thành tiền: <span th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'POINT', 3, 'COMMA')}"></span>đ</span>
+		        </div>
+		    </div>
+		</div>
+
+    </main>
+</body>
+</html>

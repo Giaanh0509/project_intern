@@ -1,0 +1,10 @@
+.book-image {
+    background-color: #f0f0f0;
+    height: 200px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}

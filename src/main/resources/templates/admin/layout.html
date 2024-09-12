@@ -1,0 +1,109 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="/css/admin/bootstrap.v411.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/js/admin/bootstrap.v411.min.js"></script>
+    <script src="/js/admin/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/admin/bootstrap.v400.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="/css/admin/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/css/admin/main.css">
+    <script src="/js/admin/main.js"></script>
+
+    <title>Admin's Home Page</title>
+</head>
+<body>
+<div id="page-container" class="main-admin">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+        <a class="navbar-brand" href="#"></a>
+        <div id="open-menu" class="menu-bar">
+            <div class="bars"></div>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown ets-right-0">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/images/admin.jpg" class="img-fluid rounded-circle border user-profile">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="side-bar">
+        <div class="side-bar-links">
+            <div class="side-bar-logo text-center py-3">
+                <img src="/images/admin.jpg" class="img-fluid rounded-circle border bg-secoundry mb-3">
+                <h5>ADMINISTRATOR</h5>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-links d-block"><i class="fa fa-user pr-2"></i> Tài khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-links d-block"><i class="fa fa-book pr-2"></i> Sản phẩm kinh doanh</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-links d-block"><i class="fa fa-bars pr-2"></i> Đơn hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-links d-block"><i class="fa fa-money pr-2"></i>Doanh thu</a>
+                </li>
+            </ul>
+        </div>
+        <div class="side-bar-icons">
+            <div class="icons d-flex flex-column align-items-center mt-3">
+                <a th:href="@{/admin/users}" class="set-width text-center display-inline-block my-2">
+                    <i id="iconUser" class="fa fa-user" onclick="boldIcon(this, 'iconUser')"></i>
+                </a>
+
+                <a th:href="@{/admin/books}" class="set-width text-center display-inline-block my-2">
+                    <i id="iconBook" class="fa fa-book" onclick="boldIcon(this, 'iconBook')"></i>
+                </a>
+
+                <a th:href="@{/admin/orders}" class="set-width text-center display-inline-block my-2">
+                    <i id="iconBars" class="fa fa-bars" onclick="boldIcon(this, 'iconBars')"></i>
+                </a>
+
+                <a th:href="@{/admin/revenues}" class="set-width text-center display-inline-block my-2">
+                    <i id="iconMoney" class="fa fa-money" onclick="boldIcon(this, 'iconMoney')"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div layout:fragment="content">
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/js/admin/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/admin/popper.min.js"></script>
+<script src="/js/admin/bootstrap.v400.min.js" ></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#open-menu").click(function(){
+            if(jQuery('#page-container').hasClass('show-menu')){
+            jQuery("#page-container").removeClass('show-menu');
+        }
+
+            else{
+            jQuery("#page-container").addClass('show-menu');
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/admin/books.css" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+        <h3 class="mb-3 ml-3">Các mặt hàng sách đang kinh doanh</h3>
+
+        <a th:href="@{/admin/books/new}"
+           class="btn btn-success mb-3 ml-3 text-light">
+            Create new books
+        </a>
+
+        <div class="table-responsive bg-light">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Stock quantity</th>
+                    <th></th>
+                    <th>Handle</th>
+                </tr>
+                <tr th:each="book: ${books}" >
+                        <th>
+                            <div class="mt-7" th:text="${book.id}"></div>
+                        </th>
+
+                        <th>
+                            <div class="mt-7" th:text="${book.title}"></div>
+                        </th>
+
+                        <th>
+                            <div class="mt-7" th:text="${book.price}"></div>
+                        </th>
+
+                        <th>
+                            <div class="mt-7" th:text="${book.stockQuantity}"></div>
+                        </th>
+
+                    <th>
+                        <div class="book-image">
+                            <img th:src="'data:image/jpeg;base64,' + ${book.image}" alt="Book Image" />
+                        </div>
+                    </th>
+
+                    <th>
+                        <a th:href="@{/admin/users}"
+                           class="btn btn-info mt-7">
+                            Edit
+                        </a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

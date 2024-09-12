@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Revenue</title>
+    <link href="/css/admin/all.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+    <div class="container content d-flex">
+        <div class="col-lg-12 col-xl-8">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Báo cáo doanh thu các tháng gần đây</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-lg-3">
+                            <div class="border-primary border rounded text-center py-3 mb-3">
+                                <h5 class="card-title text-primary mb-1" th:text="${orderCompletedQuantity}"></h5>
+                                <p class="text-primary mb-0">Đơn hàng</p>
+                            </div>
+                            <div class="border-success border rounded text-center py-3 mb-3">
+                                <h5 class="card-title text-success mb-1" th:text="${totalPrice} + '₫'"></h5>
+                                <p class="text-success mb-0">Doanh thu</p>
+                            </div>
+                            <div class="border-warning border rounded text-center py-3">
+                                <h5 class="card-title text-warning mb-1" th:text="${booksSoldQuantity}"></h5>
+                                <p class="text-warning mb-0">Sách bán</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-9">
+                            <div  th:each="month, iterStat : ${recentOrderMonths}">
+                                <p th:text="'Tháng ' + ${month}"> <span class="float-right">55%</span></p>
+                                <div class="progress mb-3" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         th:class="'progress-bar-' + ${iterStat.index % 5}"
+                                         style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-xl-6">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Báo cáo doanh thu theo tháng</h5>
+                </div>
+
+                <div class="card-body">
+                    <form>
+                        <label for="month">Select Month:</label>
+                        <select name="month" id="month" onchange="redirectToMonth(this)">
+                            <option value="">--Select Month--</option>
+                            <option th:each="month: ${recentOrderMonths}"
+                                    th:value="${month}"
+                                    th:text="${month}"></option>
+                        </select>
+                    </form>
+
+                    <script>
+                        function redirectToMonth(select) {
+                            const month = select.value;
+                            if (month) {
+                                window.location.href = `/admin/revenues/${month}`;
+                            }
+                        }
+                    </script>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+<!--    <div class="main-body-content w-100 ets-pt">-->
+<!--        <h3 class="mb-3 ml-3">All revenue</h3>-->
+
+<!--        <div class="table-responsive bg-light">-->
+<!--            <table class="table">-->
+<!--                <tr>-->
+<!--                    <th>Total number of orders</th>-->
+<!--                    <th>Total price</th>-->
+<!--                    <th>Number of books sold</th>-->
+<!--                    <th>Best-selling books</th>-->
+<!--                </tr>-->
+
+<!--                <tr>-->
+<!--                    <th class="ml-5" th:text="${orderCompletedQuantity}"></th>-->
+<!--                    <th class="ml-5" th:text="${totalPrice}"></th>-->
+<!--                    <th class="ml-5" ></th>-->
+<!--                    <th class="ml-5" ></th>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </div>-->
+
+<!--    </div>-->
+</div>
+</body>
+</html>

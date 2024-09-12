@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+        <h1 class="mb-3 ml-3">
+            <p th:text="${notification}"></p>
+            <div>
+                <a th:if="${notification == 'The products are in sufficient quantity in stock, are you sure you want to accept'}"
+                   th:href="@{'/admin/orders/' + ${orderId} + '/accept'}"
+                   class="btn btn-success text-white">
+                    Confirm to accept
+                </a>
+
+                <a
+                        th:href="@{'/admin/orders/' + ${orderId}}"
+                        class="btn btn-danger text-white">
+                    Back to orders details
+                </a>
+            </div>
+        </h1>
+    </div>
+</div>
+
+</body>
+</html>

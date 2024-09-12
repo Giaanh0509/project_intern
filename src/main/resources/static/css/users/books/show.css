@@ -1,0 +1,441 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.book-detail {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-detail h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.book-rating {
+    margin-bottom: 15px;
+}
+
+.book-content {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.book-image img {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+.book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-price {
+    margin-bottom: 20px;
+}
+
+.book-price .current-price {
+    font-size: 24px;
+    color: #d9534f;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.book-price .original-price {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.book-price .discount {
+    font-size: 16px;
+    color: #5cb85c;
+    font-weight: bold;
+}
+
+.purchase-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.purchase-options input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.purchase-options button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.purchase-options .add-to-cart {
+    background-color: #ff7700;
+    color: white;
+}
+
+.purchase-options .buy-now {
+    background-color: #ff2f00;
+    color: white;
+}
+
+.purchase-options button:hover {
+    opacity: 0.9;
+}
+
+.book-category {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.book-category strong {
+    font-weight: bold;
+}
+
+.notification-line {
+    color: #ff7700;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Reviews Display Section Styles */
+.reviews-display-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.reviews-display-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.review {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 50px;
+    position: relative; /* Needed for positioning the delete button */
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.review .username {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.review .rating {
+    font-size: 18px;
+    color: #ffcc00; /* Color for the stars */
+    margin-bottom: 5px;
+}
+
+.review p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+/* styles for delete review modal and buttons */
+#deleteConfirmationModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #f39c12;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+}
+
+#deleteConfirmationModal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f39c12;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+#deleteConfirmationModal button:hover {
+    background-color: #e67e22;
+}
+
+.delete-btn {
+    background-color: #f39c12;
+    border: none;
+    margin-top: 5px;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #e67e22;
+}
+
+.confirmation-dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.confirmation-dialog h3 {
+    margin: 0 0 15px;
+}
+
+.confirmation-dialog button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.confirmation-dialog .confirm-button {
+    background-color: #ff2f00;
+    color: white;
+    margin-right: 10px;
+}
+
+.confirmation-dialog .cancel-button {
+    background-color: #ccc;
+    color: black;
+}
+
+.confirmation-dialog button:hover {
+    opacity: 0.9;
+}
+
+/* pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.pagination ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.pagination ul li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.pagination ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.pagination ul li a:hover {
+    background-color: #f0f0f0;
+    color: #000;
+    transition: background-color 0.3s ease;
+}
+
+.pagination ul li.active {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+.pagination ul li.active a {
+    color: white;
+}
+
+.pagination ul li.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pagination ul li.disabled a {
+    color: #aaa;
+}
+
+.review-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.review-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.review-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-section .rating {
+    font-size: 24px;
+    color: #ddd; /* Default color for unselected stars */
+    cursor: pointer;
+}
+
+.review-section .star {
+    display: inline-block;
+    transition: color 0.2s;
+}
+
+.review-section .star.selected {
+    color: #ffcc00; /* Color for selected stars */
+}
+
+.review-section textarea {
+    width: 50%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.review-section .submit-button {
+    width: 10%;
+    background-color: #ff7700;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.review-section .submit-button:hover {
+    opacity: 0.9;
+}
+
+#notification {
+    display: none;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    margin-top: 10px;
+}
+
+#notification.show {
+    display: block;
+}
+
+/* Add styles for disabled buttons */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+.disabled-text {
+    font-weight: bold;
+    color: #ff6a00;
+}
+
+.purchase-options button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.purchase-options .add-to-cart:disabled,
+.purchase-options .buy-now:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+    color: #888888;
+}
+
+.notification-line {
+    color: #ff7700;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 10px;
+    display: block;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit users</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-body-content w-100 ets-pt">
+        <div class="ml-3 mb-3">
+            <h1>Edit-users</h1>
+        </div>
+
+        <div class="table-responsive bg-light">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>PhoneNumber</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+
+                <tr>
+                    <th th:text="${user.id}"></th>
+                    <th th:text="${user.username}"></th>
+                    <th th:text="${user.phoneNumber}"></th>
+                    <th th:text="${user.address}"></th>
+                    <th th:text="${user.email}"></th>
+                    <th>
+                        <form class="form-inline" action="#" th:action="@{/admin/users/saveupdate}" th:object="${user}" th:method="put">
+                                <input type="hidden" th:field="*{id}" placeholder="" class="form-control w-25" />
+                                <input type="text" th:field="*{role}" placeholder="" class="form-control w-25" />
+                            <button type="submit" class="btn btn-success ml-5">Save</button>
+                        <a th:href="@{/admin/users}" class="btn btn-danger ml-2">
+                            Cancel
+                        </a>
+                        </form>
+                    </th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

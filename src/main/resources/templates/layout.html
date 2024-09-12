@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/users/common/layout.css" />
+</head>
+
+<body>
+<header th:fragment="header">
+    <div class="contact-info">
+        <span>Liên hệ: <strong>0708-744-001</strong> (Call/Zalo)</span>
+        <span class="right">
+            <a th:href="@{/guide}" style="color:inherit; text-decoration:none;">Hướng dẫn đặt sách</a> |
+            <a th:href="@{/user/orders}" style="color:inherit; text-decoration:none;">Theo dõi đơn hàng</a> |
+            <span sec:authorize="isAuthenticated()" class="dropdown">
+                <a th:href="@{/account}" style="color:inherit; text-decoration:none;" class="dropdown-toggle">
+                    <span th:text="${#authentication.name}">Tài Khoản</span>
+                </a>
+                <div class="dropdown-content">
+                    <a th:href="@{/account}">Tài khoản</a>
+                    <a th:href="@{/sessions/login}">Đăng xuất</a>
+                </div>
+            </span>
+
+            <span sec:authorize="!isAuthenticated()">
+                <a th:href="@{/sessions/login}" style="color:inherit; text-decoration:none;">
+                    Đăng nhập/đăng ký
+                </a>
+            </span>
+        </span>
+    </div>
+    <div class="logo-search-cart">
+        <div class="logo">
+            <h1>JBooks</h1>
+        </div>
+        <div class="search-bar">
+            <form th:action="@{/home}" method="get">
+                <input type="text" name="search" placeholder="Tìm sách tại đây" th:value="${search}" />
+                <button type="submit">Tìm</button>
+            </form>
+        </div>
+        <div class="cart">
+            <span sec:authorize="isAuthenticated()">
+                <a th:href="@{/cart(userId=${userId})}" style="color:inherit; text-decoration:none;">
+                    Giỏ Hàng
+                </a>
+            </span>
+
+            <span sec:authorize="!isAuthenticated()">
+                <a href="javascript:void(0)" style="color:inherit; text-decoration:none; pointer-events:none; opacity:0.5;" title="Bạn cần đăng nhập để sử dụng giỏ hàng">
+                     Giỏ Hàng
+                </a>
+            </span>
+        </div>
+
+
+    </div>
+    <nav>
+        <ul>
+            <li><a th:href="@{/home}" style="color:inherit; text-decoration:none;">Home</a></li>
+            <li><a th:href="@{/user/orders}" style="color:inherit; text-decoration:none;">Đơn hàng</a></li>
+            <li>Liên hệ</li>
+            <li>Flash Sale</li>
+            <li>Học Online</li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <aside class="sidebar" th:fragment="sidebar">
+        <ul>
+            <li><a th:href="@{/home}">Tất cả</a></li>
+            <li><a th:href="@{/categories/1}">Luyện thi N1</a></li>
+            <li><a th:href="@{/categories/2}">Luyện thi N2</a></li>
+            <li><a th:href="@{/categories/3}">Luyện thi N3</a></li>
+            <li><a th:href="@{/categories/4}">Luyện thi N4</a></li>
+            <li><a th:href="@{/categories/5}">Luyện thi N5</a></li>
+            <li><a th:href="@{/categories/6}">Tham khảo</a></li>
+            <li><a th:href="@{/categories/7}">Chuyên ngành</a></li>
+            <li><a th:href="@{/categories/8}">Bài tập</a></li>
+            <li><a th:href="@{/categories/9}">Giáo khoa</a></li>
+            <li><a th:href="@{/categories/10}">Luyện nghe</a></li>
+            <li><a th:href="@{/categories/11}">Luyện đọc</a></li>
+            <li><a th:href="@{/categories/12}">Luyện Kanji</a></li>
+            <li><a th:href="@{/categories/13}">Hội thoại</a></li>
+            <li><a th:href="@{/categories/14}">Flash card</a></li>
+            <li><a th:href="@{/categories/15}">Từ điển</a></li>
+            <li><a th:href="@{/categories/16}">Vỡ lòng</a></li>
+        </ul>
+    </aside>
+
+    <main layout:fragment="content">
+    </main>
+</div>
+
+<footer th:fragment="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Liên hệ chúng tôi:</h4>
+            <p>
+                HOTLINE: <span style="color: green">0708-744-001</span> (8:00 –
+                18:00)
+            </p>
+            <p>
+                <strong>Sách tiếng Nhật JBooks</strong><br />
+                Số 1 Đại Cồ Việt, Bách Khoa, Hai Bà Trưng, Hà Nội<br />
+                <a href="mailto:vnjpbook@gmail.com" style="color: red">javbooks@gmail.com</a>
+            </p>
+            <p>
+                Có thể liên hệ qua zalo: 0123-666-999<br />
+                Các bạn ở Hà Nội nếu có nhu cầu mua sách tận nơi thì liên hệ
+                0987-999-666.<br />
+                Shop sẽ chiết khấu dành riêng cho các bạn ghé mua tại nơi nhé!
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Về chúng tôi:</h4>
+            <p>
+                Với mong muốn gây dựng một cộng đồng học tiếng Nhật, giúp đỡ và chia
+                sẻ những kiến thức và kinh nghiệm. Năm 2010 JAVBOOK được ra đời nhằm
+                giúp các học viên nâng cao năng lực Nhật ngữ mà không mất chi phí.
+            </p>
+            <p>
+                Tiếp nối sự thành công của JAVBOOK, JBOOKS được ra đời để cung cấp
+                tài liệu cho các bạn học viên, giáo viên và nhà nghiên cứu giảng dạy
+                tiếng Nhật. Team đang cố gắng dịch, biên tập tài liệu giúp các bạn
+                có nhiều tài liệu để tham khảo hơn. Cám ơn các bạn đã ủng hộ!
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Chính sách và hướng dẫn:</h4>
+            <ul>
+                <li>Hướng dẫn đặt sách</li>
+                <li>CD và Download file</li>
+                <li>Mã giảm giá</li>
+                <li>Hủy đơn hàng</li>
+                <li>Chính sách đổi trả</li>
+                <li>Chính sách vận chuyển</li>
+                <li>Chính sách bảo mật</li>
+            </ul>
+            <h4>Kết nối với chúng tôi:</h4>
+            <div class="social-icons">
+                <!-- Icons or links to social media -->
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Tải ứng dụng:</h4>
+            <ul>
+                <li>Học tiếng Nhật JBOOKS</li>
+                <li>JBOOKS Audio <span class="coming-soon">COMING SOON!</span></li>
+            </ul>
+            <!-- Placeholder for QR codes or other images -->
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>JBOOKS - Sách tiếng Nhật dành cho người Việt</p>
+        <p>© 2022 JBOOKS</p>
+    </div>
+</footer>
+</body>
+</html>
